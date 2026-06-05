@@ -1,0 +1,139 @@
+{
+  "usuarios": [
+    {
+      "nomeCompleto": "Daniel",
+      "email": "danielprof@gmail.com",
+      "senhaHash": "12345678",
+      "dataCadastro": "2026-06-05",
+      "id": 1
+    }
+  ],
+  "categorias": [
+    {
+      "nome": "Programação",
+      "descricao": "Categoria focada somente a programação",
+      "id": 1
+    }
+  ],
+  "cursos": [
+    {
+      "titulo": "Tecnologia e Construção de Software 1",
+      "descricao": "Curso para aprender sobre git, docker, javascript, html, css, bootstrap e react",
+      "idInstrutor": 1,
+      "idCategoria": 1,
+      "nivel": "Intermediário",
+      "totalAulas": 80,
+      "totalHoras": 80,
+      "dataPublicacao": "2026-06-05",
+      "id": 1
+    }
+  ],
+  "modulos": [
+    {
+      "idCurso": 1,
+      "titulo": "O começo de tudo",
+      "ordem": 1,
+      "id": 1
+    }
+  ],
+  "aulas": [
+    {
+      "idModulo": 1,
+      "titulo": "Git",
+      "tipoConteudo": "Vídeo",
+      "urlConteudo": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "duracaoMinutos": 180,
+      "ordem": 1,
+      "id": 1
+    }
+  ],
+  "matriculas": [
+    {
+      "idUsuario": 1,
+      "idCurso": 1,
+      "dataMatricula": "2026-06-05",
+      "dataConclusao": "",
+      "id": 1
+    }
+  ],
+  "progressoAulas": [
+    {
+      "idUsuario": 1,
+      "idAula": 1,
+      "dataConclusao": "2026-06-05",
+      "status": "Concluído",
+      "id": 1
+    }
+  ],
+  "avaliacoes": [
+    {
+      "idUsuario": 1,
+      "idCurso": 1,
+      "nota": 5,
+      "comentario": "É a melhor aula que eu já vi!",
+      "dataAvaliacao": "2026-06-05",
+      "id": 1
+    }
+  ],
+  "trilhas": [
+    {
+      "titulo": "Trilha Front-End",
+      "descricao": "\tHTML, CSS, Bootstrap e React",
+      "idCategoria": 1,
+      "id": 1
+    }
+  ],
+  "trilhasCursos": [],
+  "certificados": [
+    {
+      "idUsuario": 1,
+      "idCurso": 1,
+      "codigoVerificacao": "CERT-KDCB3C",
+      "dataEmissao": "2026-06-05",
+      "idTrilha": 1,
+      "id": 1
+    }
+  ],
+  "planos": [
+    {
+      "id": 1,
+      "nome": "Mensal",
+      "descricao": "Acesso completo por 1 mês",
+      "preco": 39.9,
+      "duracaoMeses": 1
+    },
+    {
+      "id": 2,
+      "nome": "Semestral",
+      "descricao": "Acesso completo por 6 meses",
+      "preco": 199.9,
+      "duracaoMeses": 6
+    },
+    {
+      "id": 3,
+      "nome": "Anual",
+      "descricao": "Acesso completo por 12 meses",
+      "preco": 349.9,
+      "duracaoMeses": 12
+    }
+  ],
+  "assinaturas": [
+    {
+      "idUsuario": 1,
+      "idPlano": 2,
+      "dataInicio": "2026-06-05",
+      "dataFim": "2026-12-05",
+      "id": 1
+    }
+  ],
+  "pagamentos": [
+    {
+      "idAssinatura": 1,
+      "valorPago": 199.9,
+      "dataPagamento": "2026-06-05",
+      "metodoPagamento": "Cartão de crédito",
+      "idTransacaoGateway": "TX-1780630981188",
+      "id": 1
+    }
+  ]
+}
