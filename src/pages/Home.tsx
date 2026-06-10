@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import Sidebar from '../components/Sidebar';
 import { api } from '../services/api';
 
 const modulos = [
@@ -14,6 +15,7 @@ const modulos = [
 ];
 
 export default function Home() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [stats, setStats] = useState({ usuarios: 0, cursos: 0, matriculas: 0, certificados: 0 });
 
   useEffect(() => {
@@ -26,7 +28,8 @@ export default function Home() {
 
   return (
     <div className="min-vh-100 bg-dark text-light">
-      <Navbar />
+      <Navbar onMenuClick={() => setSidebarOpen(true)} />
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <section className="py-5">
         <div className="container">
           <div className="mb-5">

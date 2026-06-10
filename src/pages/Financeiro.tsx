@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
+import Sidebar from '../components/Sidebar';
 import { api, addMeses, hoje } from '../services/api';
 import { Assinatura, Pagamento, Plano, Usuario } from '../models';
 
@@ -9,6 +10,7 @@ export default function Financeiro() {
   const [assinaturas, setAssinaturas] = useState<Assinatura[]>([]);
   const [pagamentos, setPagamentos] = useState<Pagamento[]>([]);
   const [loading, setLoading] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loadingCheckout, setLoadingCheckout] = useState(false);
   const [planoSel, setPlanoSel] = useState<number | ''>('');
   const [msg, setMsg] = useState('');
@@ -60,7 +62,8 @@ export default function Financeiro() {
 
   return (
     <div className="min-vh-100 bg-dark">
-      <Navbar />
+      <Navbar onMenuClick={() => setSidebarOpen(true)} />
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="container py-4">
         <div className="d-flex align-items-center mb-4">
           <i className="bi bi-credit-card text-primary me-3" style={{ fontSize: '2rem' }}></i>

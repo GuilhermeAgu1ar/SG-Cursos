@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
+import Sidebar from '../components/Sidebar';
 import UsuarioForm from '../components/UsuarioForm';
 import UsuariosList from '../components/UsuariosList';
 import { api } from '../services/api';
@@ -8,6 +9,7 @@ import { Usuario } from '../models';
 export default function Usuarios() {
   const [usuarios, setUsuarios] = useState<Usuario[]>([]);
   const [loading, setLoading] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [usuarioEditando, setUsuarioEditando] = useState<Usuario | null>(null);
 
   const fetchUsuarios = async () => {
@@ -30,7 +32,8 @@ export default function Usuarios() {
 
   return (
     <div className="min-vh-100 bg-dark">
-      <Navbar />
+      <Navbar onMenuClick={() => setSidebarOpen(true)} />
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="container py-4">
         <div className="d-flex align-items-center mb-4">
           <i className="bi bi-people text-primary me-3" style={{ fontSize: '2rem' }}></i>

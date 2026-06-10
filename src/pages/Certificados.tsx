@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
+import Sidebar from '../components/Sidebar';
 import { api, gerarCodigo, hoje } from '../services/api';
 import { Certificado, Curso, Trilha, Usuario } from '../models';
 
@@ -9,6 +10,7 @@ export default function Certificados() {
   const [trilhas, setTrilhas] = useState<Trilha[]>([]);
   const [certificados, setCertificados] = useState<Certificado[]>([]);
   const [loading, setLoading] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loadingForm, setLoadingForm] = useState(false);
   const [form, setForm] = useState({ idUsuario: '', idCurso: '', idTrilha: '' });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -69,7 +71,8 @@ export default function Certificados() {
 
   return (
     <div className="min-vh-100 bg-dark">
-      <Navbar />
+      <Navbar onMenuClick={() => setSidebarOpen(true)} />
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="container py-4">
         <div className="d-flex align-items-center mb-4">
           <i className="bi bi-award text-primary me-3" style={{ fontSize: '2rem' }}></i>

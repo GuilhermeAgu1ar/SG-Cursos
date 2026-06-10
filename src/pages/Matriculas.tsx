@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
+import Sidebar from '../components/Sidebar';
 import MatriculaForm from '../components/MatriculaForm';
 import MatriculasList from '../components/MatriculasList';
 import { api, hoje } from '../services/api';
@@ -12,6 +13,7 @@ export default function Matriculas() {
   const [aulas, setAulas] = useState<Aula[]>([]);
   const [progresso, setProgresso] = useState<ProgressoAula[]>([]);
   const [loading, setLoading] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [tab, setTab] = useState<'matriculas' | 'progresso'>('matriculas');
 
   const fetchAll = async () => {
@@ -45,7 +47,8 @@ export default function Matriculas() {
 
   return (
     <div className="min-vh-100 bg-dark">
-      <Navbar />
+      <Navbar onMenuClick={() => setSidebarOpen(true)} />
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="container py-4">
         <div className="d-flex align-items-center mb-4">
           <i className="bi bi-clipboard-check text-primary me-3" style={{ fontSize: '2rem' }}></i>

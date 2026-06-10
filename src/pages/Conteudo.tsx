@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
+import Sidebar from '../components/Sidebar';
 import { api } from '../services/api';
 import { Aula, Curso, Modulo } from '../models';
 import { moduloSchema, aulaSchema } from '../schema/validacao';
@@ -9,6 +10,7 @@ export default function Conteudo() {
   const [modulos, setModulos] = useState<Modulo[]>([]);
   const [aulas, setAulas] = useState<Aula[]>([]);
   const [loading, setLoading] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [tab, setTab] = useState<'modulos' | 'aulas'>('modulos');
 
   const [moduloEditando, setModuloEditando] = useState<Modulo | null>(null);
@@ -103,7 +105,8 @@ export default function Conteudo() {
 
   return (
     <div className="min-vh-100 bg-dark">
-      <Navbar />
+      <Navbar onMenuClick={() => setSidebarOpen(true)} />
+      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       <div className="container py-4">
         <div className="d-flex align-items-center mb-4">
           <i className="bi bi-collection-play text-primary me-3" style={{ fontSize: '2rem' }}></i>
