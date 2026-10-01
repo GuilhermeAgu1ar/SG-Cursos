@@ -1,14 +1,16 @@
 import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { Public } from '../auth/public.decorator';
 
 @ApiTags('usuarios')
 @Controller('usuarios')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @Public()
   @Post()
   @ApiOperation({ summary: 'Criar um novo usuario' })
   @ApiResponse({ status: 201, description: 'Usuario criado com sucesso.' })
@@ -17,24 +19,28 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
+  @ApiBearerAuth('token')
   @Get()
   @ApiOperation({ summary: 'Listar todos os usuarios' })
   findAll() {
     return this.usersService.findAll();
   }
 
+  @ApiBearerAuth('token')
   @Get(':id')
   @ApiOperation({ summary: 'Buscar um usuario pelo ID' })
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id);
   }
 
+  @ApiBearerAuth('token')
   @Put(':id')
   @ApiOperation({ summary: 'Atualizar um usuario' })
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(+id, updateUserDto);
   }
 
+  @ApiBearerAuth('token')
   @Delete(':id')
   @ApiOperation({ summary: 'Remover um usuario' })
   remove(@Param('id') id: string) {

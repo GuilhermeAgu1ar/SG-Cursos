@@ -1,10 +1,11 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { TrilhaCursosService } from './trilha-cursos.service';
 import { CreateTrilhaCursoDto } from './dto/create-trilha-curso.dto';
 import { UpdateTrilhaCursoDto } from './dto/update-trilha-curso.dto';
 
 @ApiTags('trilhaCursos')
+@ApiBearerAuth('token')
 @Controller('trilhaCursos')
 export class TrilhaCursosController {
   constructor(private readonly trilhaCursosService: TrilhaCursosService) {}

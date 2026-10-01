@@ -1,10 +1,11 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AssinaturasService } from './assinaturas.service';
 import { CreateAssinaturaDto } from './dto/create-assinatura.dto';
 import { UpdateAssinaturaDto } from './dto/update-assinatura.dto';
 
 @ApiTags('assinaturas')
+@ApiBearerAuth('token')
 @Controller('assinaturas')
 export class AssinaturasController {
   constructor(private readonly assinaturasService: AssinaturasService) {}

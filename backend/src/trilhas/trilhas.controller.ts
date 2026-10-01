@@ -1,10 +1,11 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { TrilhasService } from './trilhas.service';
 import { CreateTrilhaDto } from './dto/create-trilha.dto';
 import { UpdateTrilhaDto } from './dto/update-trilha.dto';
 
 @ApiTags('trilhas')
+@ApiBearerAuth('token')
 @Controller('trilhas')
 export class TrilhasController {
   constructor(private readonly trilhasService: TrilhasService) {}

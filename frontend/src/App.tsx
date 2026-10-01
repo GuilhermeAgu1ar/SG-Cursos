@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Cursos from './pages/Cursos';
 import Usuarios from './pages/Usuarios';
@@ -7,18 +7,25 @@ import Matriculas from './pages/Matriculas';
 import Avaliacoes from './pages/Avaliacoes';
 import Financeiro from './pages/Financeiro';
 import Certificados from './pages/Certificados';
+import Login from './pages/Login';
+
+function Protected({ children }: { children: JSX.Element }) {
+  const token = localStorage.getItem('token');
+  return token ? children : <Navigate to="/login" replace />;
+}
 
 export default function App() {
   return (
     <Routes>
-      <Route path="/"             element={<Home />} />
-      <Route path="/cursos"       element={<Cursos />} />
-      <Route path="/conteudo"     element={<Conteudo />} />
-      <Route path="/usuarios"     element={<Usuarios />} />
-      <Route path="/matriculas"   element={<Matriculas />} />
-      <Route path="/avaliacoes"   element={<Avaliacoes />} />
-      <Route path="/financeiro"   element={<Financeiro />} />
-      <Route path="/certificados" element={<Certificados />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/"             element={<Protected><Home /></Protected>} />
+      <Route path="/cursos"       element={<Protected><Cursos /></Protected>} />
+      <Route path="/conteudo"     element={<Protected><Conteudo /></Protected>} />
+      <Route path="/usuarios"     element={<Protected><Usuarios /></Protected>} />
+      <Route path="/matriculas"   element={<Protected><Matriculas /></Protected>} />
+      <Route path="/avaliacoes"   element={<Protected><Avaliacoes /></Protected>} />
+      <Route path="/financeiro"   element={<Protected><Financeiro /></Protected>} />
+      <Route path="/certificados" element={<Protected><Certificados /></Protected>} />
     </Routes>
   );
 }
